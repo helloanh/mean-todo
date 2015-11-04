@@ -1,2 +1,3 @@
-# mean-todo
-todo app with MEAN stack
+## mean-todo
+
+Exercises based on the MEAN Web Development textbook by Amos Q. Haviv.
