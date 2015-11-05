@@ -18,6 +18,7 @@ var UserSchema = new Schema({
     password: {
         type: String,
         validate: [
+
             function(password) {
                 return password.length >= 6;
             },
@@ -43,6 +44,34 @@ var UserSchema = new Schema({
             }
         }
     },
+});
+
+// using post middleware, this executes after the operation happens
+UserSchema.post('save', function(next) {
+    if (this.isNew) {
+        console.log('A new user was created.');
+    } else {
+        console.log('A user updated is details.');
+    }
+});
+
+
+// create post schema to illustrate DBRef support  
+var PostSchema = new Schema({
+	title: {
+		type: String,
+		required: true
+	},
+	content {
+		type: String,
+		required: true
+	},
+	author {
+		type: Schema.ObjectId,
+		// ref property tells mongoose that the author field
+		// will use the User model to populate the value
+		ref: 'User'
+	}
 });
 
 mongoose.model('User', UserSchema);
