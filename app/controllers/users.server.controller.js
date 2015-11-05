@@ -60,11 +60,11 @@ exports.read = function(req, res){
 
 exports.userByID = function(req,res,next,id){
     User.findOne({
-            _id: id
+        _id: id
     }, function(err, user) {
-        if(err){
+        if (err) {
             return next(err);
-        } else{
+        } else {
             res.user = user;
             next();
         }
@@ -81,3 +81,14 @@ exports.update = function(req, res, next){
         }
     });
 };
+
+//  controller remove() method using findByIdAndRemove()
+exports.delete = function(req, res, next){
+    req.user.remove(function(err) {
+        if (err) {
+            return next(err);
+        } else {
+            res.json(res.user);
+        }
+    });
+}
