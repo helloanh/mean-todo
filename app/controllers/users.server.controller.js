@@ -50,5 +50,26 @@ exports.list = function(req, res, next){
     });
 };
 
+// user controller method findOne() 
+exports.read = function(req, res){
+    res.json(res.user);
+};
+
+// reading a single user document 
+// userById method is responsible for populating the req.user object,  use it as a middleware to deal with single documents manipulation for read, delete, update operations  
+
+exports.userByID = function(req,res,next,id){
+    User.findOne({
+        _id: id,
+    }, function(err, user){
+            if(err){
+                return next(err);
+            } else{
+                res.user = user;
+                next();
+            }
+       }
+    });
+};
 
 
