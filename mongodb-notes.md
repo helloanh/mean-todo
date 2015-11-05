@@ -89,5 +89,13 @@ query to request documents with more than 10 comments:
 
 + mongoDB supports horizontal scaling  
 
+### Mongoose  
+
+Mongoose is a Object Relational Mapping (ODM) node.js module  to support Express application  
+
++  uses schemas to model entities  
++  goal is to bridge the gap btw MongoDB schemaless approach and the requirements of real-world app development  
+ 
+
 
 
