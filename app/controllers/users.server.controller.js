@@ -2,7 +2,7 @@
 var User = require('mongoose').model('User');
 
 // controller method create() 
-exports.create = function(req res, next){
+exports.create = function(req, res, next){
     // create new user instance which is populated
     // using the request body
     var user = new User(req.body);
@@ -18,3 +18,17 @@ exports.create = function(req res, next){
         }
     })
 };
+
+// user controller method list()
+// list() usese find.() method to retrive an array of all the documents in the users collection 
+
+exports.list = function(req, res, next){
+    User.find({}, function(err, users){
+        if (err){
+            return next(err);
+        } else {
+            res.json(users);
+        }
+    });
+};
+
