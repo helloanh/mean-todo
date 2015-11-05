@@ -21,8 +21,6 @@ exports.create = function(req, res, next){
 
 // user controller method list()
 // list() usese find.() method to retrive an array of all the documents in the users collection 
-
-exports.list = function(req, res, next){
     // find() can take 4 params
     // Query - mongodb query object
     // [Fields] = optional string obj to represent doc fields return
@@ -41,6 +39,7 @@ exports.list = function(req, res, next){
     });
 
     */
+exports.list = function(req, res, next){
     User.find({}, function(err, users){
         if (err){
             return next(err);
@@ -57,28 +56,27 @@ exports.read = function(req, res){
 
 // reading a single user document 
 // userById method is responsible for populating the req.user object,  use it as a middleware to deal with single documents manipulation for read, delete, update operations  
-
-exports.userByID = function(req,res,next,id){
+exports.userByID = function(req, res, next, id) {
     User.findOne({
         _id: id
     }, function(err, user) {
         if (err) {
             return next(err);
         } else {
-            res.user = user;
+            req.user = user;
             next();
-        }
+        } 
     });
 };
 
 // update() method by using findByIdAndUpdate() 
-exports.update = function(req, res, next){
-    User.findByIdAndUpdate(req.user.id, req.body, function(err, user){
-        if (err){
+exports.update = function(req, res, next) {
+    User.findByIdAndUpdate(req.user.id, req.body, function(err, user) {
+       if (err) {
             return next(err);
         } else {
             res.json(user);
-        }
+        } 
     });
 };
 
