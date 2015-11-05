@@ -60,15 +60,14 @@ exports.read = function(req, res){
 
 exports.userByID = function(req,res,next,id){
     User.findOne({
-        _id: id,
-    }, function(err, user){
-            if(err){
-                return next(err);
-            } else{
-                res.user = user;
-                next();
-            }
-       }
+            _id: id
+    }, function(err, user) {
+        if(err){
+            return next(err);
+        } else{
+            res.user = user;
+            next();
+        }
     });
 };
 

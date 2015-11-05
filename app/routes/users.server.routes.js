@@ -15,6 +15,6 @@ module.exports = function(app){
         .get(users.read);
 
     // to handle the population of teh req.user object, use the app.param method before any other middleware that uses that params 
-    app.param('userId', users.userById);
+    app.param('userId', users.userByID);
 };
 
